@@ -21,6 +21,11 @@ scene.add(cube);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
+const toggleBtnn = document.getElementById('toggleBtn');
+toggleBtn.addEventListener('click', () => {
+  cube.material.wireframe = !cube.material.wireframe;
+});
+
 // Animate
 function animate() {
     requestAnimationFrame(animate);
