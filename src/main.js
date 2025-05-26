@@ -33,7 +33,7 @@ const bgMaterial= new THREE.ShaderMaterial({
     fragmentShader,
     uniforms: {
         uTime: {value: 0.0},
-        uColor1: {value: new THREE.Color(0x2a2a72)},
+        uColor1: {value: new THREE.Color(0x5E0104)},
         uColor2: {value: new THREE.Color(0xff6b6b)},
         uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
     },
