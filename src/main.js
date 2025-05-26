@@ -34,7 +34,8 @@ const bgMaterial= new THREE.ShaderMaterial({
     uniforms: {
         uTime: {value: 0.0},
         uColor1: {value: new THREE.Color(0x2a2a72)},
-        uColor2: {value: new THREE.Color(0xff6b6b)}
+        uColor2: {value: new THREE.Color(0xff6b6b)},
+        uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
     },
     depthWrite: false,
     depthTest: false,
@@ -66,4 +67,5 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    bgMaterial.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
 });

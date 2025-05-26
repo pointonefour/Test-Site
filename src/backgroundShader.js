@@ -13,6 +13,7 @@ export const fragmentShader = `
   uniform float uTime;
   uniform vec3 uColor1;
   uniform vec3 uColor2;
+  uniform vec2 uResolution;
 
   // Hash function for pseudo-randomness
   vec4 hash4(vec4 p) {
@@ -40,16 +41,19 @@ export const fragmentShader = `
   }
 
   void main() {
-    vec2 uv = vUv * 3.0;
+    vec2 uv = vUv * 2.0;
+    uv.x *= uResolution.x / uResolution.y;
+    uv *= 4.0;
+    uv += 1.0;
     
-    float z = sin(uTime*0.15)*2.0;
+    float z = sin(uTime*0.1)*2.0;
     float w = cos(uTime*0.1)*2.0;
 
     vec4 pos = vec4(uv.x, uv.y, z, w);
 
     float n = voronoi4D(pos);
 
-    float intensity = smoothstep(0.3, 0.7, n);
+    float intensity = smoothstep(0.2, 0.9, n);
     vec3 color = mix(uColor1, uColor2, intensity);
     gl_FragColor = vec4(color, 1.0);
   }
