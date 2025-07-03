@@ -2,7 +2,7 @@ export const vertexShader = `
   varying vec2 vUv;
   void main() {
     vUv = uv;
-    gl_Position = vec4(position, 1.0);
+    gl_Position = vec4(position, 0.8);
   }
 `;
 
@@ -41,19 +41,19 @@ export const fragmentShader = `
   }
 
   void main() {
-    vec2 uv = vUv * 2.0;
+    vec2 uv = vUv * 100.0;
     uv.x *= uResolution.x / uResolution.y;
     uv *= 4.0;
     uv += 1.0;
     
     float z = sin(uTime*0.1)*2.0;
-    float w = cos(uTime*0.1)*2.0;
+    float w = cos(uTime*0.1)*1.5;
 
     vec4 pos = vec4(uv.x, uv.y, z, w);
 
     float n = voronoi4D(pos);
 
-    float intensity = smoothstep(0.2, 0.9, n);
+    float intensity = smoothstep(0.9, 1.0, n);
     vec3 color = mix(uColor1, uColor2, intensity);
     gl_FragColor = vec4(color, 1.0);
   }
